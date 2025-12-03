@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* Custom theme configuration */
+@theme {
+  --color-earth-50: #fcf9f8;
+  --color-earth-100: #f6f1ef;
+  --color-earth-200: #efe0dc;
+  --color-earth-300: #e5c9c3;
+  --color-earth-400: #d5a39a;
+  --color-earth-500: #c17d72;
+  --color-earth-600: #aa6056;
+  --color-earth-700: #8e4c43;
+  --color-earth-800: #77413b;
+  --color-earth-900: #4a2c2a;
+  --color-earth-950: #2a1716;
+  
+  --color-serena-pink: #F8E7E7;
+  --color-serena-dark: #3E2723;
+  --color-serena-accent: #D81B60;
+  
+  --font-family-sans: 'Tenor Sans', sans-serif;
+  --font-family-serif: 'Bodoni Moda', serif;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 6s ease-in-out 3s infinite;
+  --animate-wiggle: wiggle 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Tenor Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bodoni Moda', serif;
+}
