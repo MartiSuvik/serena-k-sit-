@@ -11,7 +11,7 @@ const WavySection: React.FC = () => {
                 
                 {/* Text Content */}
                 <div className="text-white space-y-10 order-2 lg:order-1">
-                    <h2 className="text-5xl md:text-7xl font-serif leading-[1.1]">
+                    <h2 className="text-4xl md:text-6xl font-serif leading-[1.3]">
                         Šokolaad on nagu <br/>
                         <span className="text-earth-300 italic font-light">kallistus seestpoolt</span>
                     </h2>

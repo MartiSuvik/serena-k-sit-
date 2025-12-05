@@ -9,18 +9,17 @@ export const NAV_ITEMS: NavItem[] = [
 export const PRODUCTS: Product[] = [
   {
     id: 1,
-    name: '10 kommiga assortiikarp',
-    description: 'Luksuslik valik erinevaid käsitöökomme.',
-    price: 13.00,
-    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708907/nq40fwklauagr0n6vwmk.jpg',
-    isNew: true
+    name: '2 kommiga karp "kingitus"',
+    description: 'Armas väike kingitus.',
+    price: 3.00,
+    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708902/zkplc9vwgqogzqn5khp1.jpg'
   },
   {
     id: 2,
-    name: '6 kommiga assortiikarp',
-    description: 'Täiuslik kingitus igaks sündmuseks.',
-    price: 7.50,
-    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708898/e9rbgi0n2ljzr5g2xjrx.jpg'
+    name: '3 kommiga karp "kuldne liblikas"',
+    description: 'Kaunis kuldse liblikaga kinkekarp.',
+    price: 4.00,
+    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708905/t7fzkfttvm6qbthwjqyy.jpg'
   },
   {
     id: 3,
@@ -31,10 +30,31 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 4,
-    name: '3 kommiga karp "kuldne liblikas"',
-    description: 'Kaunis kuldse liblikaga kinkekarp.',
-    price: 4.00,
-    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708905/t7fzkfttvm6qbthwjqyy.jpg'
+    name: '6 kommiga assortiikarp',
+    description: 'Täiuslik kingitus igaks sündmuseks.',
+    price: 7.50,
+    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708898/e9rbgi0n2ljzr5g2xjrx.jpg'
+  },
+  {
+    id: 5,
+    name: '8 kommiga kuldne assortiikarp',
+    description: 'Elegantne kuldne karp valitud kommidega.',
+    price: 11.00,
+    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708906/ttvakdh3pnkglultfua5.jpg'
+  },
+  {
+    id: 6,
+    name: '10 kommiga assortiikarp',
+    description: 'Luksuslik valik erinevaid käsitöökomme.',
+    price: 13.00,
+    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708907/nq40fwklauagr0n6vwmk.jpg'
+  },
+  {
+    id: 7,
+    name: '10 trühvliga lilleine karp',
+    description: 'Õrn lilleline karp maitsva trühvlitega.',
+    price: 12.00,
+    image: 'https://res.cloudinary.com/effichat/image/upload/v1764708913/arnvnxpduaqtmccccbzz.jpg'
   }
 ];
 
