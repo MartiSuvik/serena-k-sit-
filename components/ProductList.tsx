@@ -136,6 +136,12 @@ const ProductList: React.FC = () => {
                         <div className="pt-2 text-earth-800 font-sans font-medium">
                             €{product.price.toFixed(2)}
                         </div>
+
+                        <div className="pt-2">
+                          <span className="inline-block px-6 py-2 text-xs font-sans uppercase tracking-widest text-earth-600 border border-earth-300 group-hover:bg-earth-900 group-hover:text-white group-hover:border-earth-900 transition-all duration-300">
+                            Telli
+                          </span>
+                        </div>
                     </div>
                 </div>
             ))}
@@ -147,129 +153,75 @@ const ProductList: React.FC = () => {
 
       {/* Contact Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-earth-950/40 backdrop-blur-sm animate-[fadeIn_0.3s_ease-out]">
-          <div className="relative bg-[#faf8f6] p-8 md:p-12 shadow-2xl max-w-4xl w-full border border-earth-200 animate-[slideUp_0.4s_ease-out]" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-earth-950/40 backdrop-blur-sm animate-[fadeIn_0.3s_ease-out]" onClick={closeModal}>
+          <div className="relative bg-[#faf8f6] p-6 shadow-2xl max-w-md w-full border border-earth-200 animate-[slideUp_0.4s_ease-out]" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-earth-400 hover:text-earth-900 transition-colors p-2 z-10"
+              className="absolute top-3 right-3 text-earth-400 hover:text-earth-900 transition-colors z-10"
             >
-              <X size={24} strokeWidth={1.5} />
+              <X size={22} strokeWidth={1.5} />
             </button>
 
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-              {/* Left Column - Product Info */}
-              <div className="animate-[fadeInLeft_0.5s_ease-out]">
-                <div className="aspect-square overflow-hidden mb-6">
-                  <img 
-                    src={selectedProduct.image} 
-                    alt={selectedProduct.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="font-serif text-3xl text-earth-900 mb-2">{selectedProduct.name}</h3>
-                <p className="text-earth-600 font-sans text-lg mb-4">€{selectedProduct.price.toFixed(2)}</p>
-                <p className="text-earth-500 font-sans text-sm">{selectedProduct.description}</p>
-              </div>
-
-              {/* Right Column - Form */}
-              <div className="animate-[fadeInRight_0.5s_ease-out]">
-                <h3 className="text-2xl font-serif text-earth-900 mb-6">Telli toode</h3>
-
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div>
-                    <label className="block text-xs uppercase tracking-widest text-earth-500 mb-2 font-sans">Teie nimi</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                      className="w-full px-4 py-3 border border-earth-200 bg-white font-sans text-earth-900 focus:outline-none focus:border-earth-400 transition-colors"
-                      placeholder="Nimi"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs uppercase tracking-widest text-earth-500 mb-2 font-sans">E-mail</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                      className="w-full px-4 py-3 border border-earth-200 bg-white font-sans text-earth-900 focus:outline-none focus:border-earth-400 transition-colors"
-                      placeholder="teie@email.ee"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs uppercase tracking-widest text-earth-500 mb-2 font-sans">Kogus</label>
-                    <div className="flex items-center gap-4">
-                      <button
-                        type="button"
-                        onClick={() => updateQuantity(formData.quantity - 1)}
-                        className="w-10 h-10 border border-earth-200 text-earth-600 hover:bg-earth-100 transition-colors font-sans text-xl"
-                      >
-                        −
-                      </button>
-                      <span className="font-sans text-lg text-earth-900 w-8 text-center">{formData.quantity}</span>
-                      <button
-                        type="button"
-                        onClick={() => updateQuantity(formData.quantity + 1)}
-                        className="w-10 h-10 border border-earth-200 text-earth-600 hover:bg-earth-100 transition-colors font-sans text-xl"
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="py-3 px-4 bg-earth-100/50 border border-earth-200">
-                    <span className="font-sans text-earth-700">
-                      Kokku: <span className="font-medium text-earth-900 text-xl">€{(selectedProduct.price * formData.quantity).toFixed(2)}</span>
-                    </span>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs uppercase tracking-widest text-earth-500 mb-2 font-sans">Lisamärkused (valikuline)</label>
-                    <textarea
-                      value={formData.customNote}
-                      onChange={(e) => setFormData(prev => ({ ...prev, customNote: e.target.value }))}
-                      className="w-full px-4 py-3 border border-earth-200 bg-white font-sans text-earth-900 focus:outline-none focus:border-earth-400 transition-colors resize-none"
-                      placeholder="Erisoovid, tarneaadress, või muu info..."
-                      rows={3}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting || isSuccess}
-                    className={`w-full py-4 font-sans uppercase tracking-widest text-sm transition-colors flex items-center justify-center gap-3 ${
-                      isSuccess 
-                        ? 'bg-green-600 text-white' 
-                        : 'bg-earth-900 text-white hover:bg-earth-800'
-                    } ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        Saadan...
-                        <span className="animate-spin">⏳</span>
-                      </>
-                    ) : isSuccess ? (
-                      <>
-                        Saadetud!
-                        <Check size={18} />
-                      </>
-                    ) : (
-                      <>
-                        Saada tellimus
-                        <span className="text-lg">❤️</span>
-                      </>
-                    )}
-                  </button>
-                </form>
+            {/* Product Header */}
+            <div className="flex gap-4 mb-5 pr-8">
+              <img 
+                src={selectedProduct.image} 
+                alt={selectedProduct.name}
+                className="w-24 h-24 object-cover flex-shrink-0"
+              />
+              <div>
+                <h3 className="font-serif text-lg text-earth-900 mb-1 leading-tight">{selectedProduct.name}</h3>
+                <p className="text-earth-600 font-sans font-medium">€{selectedProduct.price.toFixed(2)}</p>
               </div>
             </div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                className="w-full px-4 py-3 border border-earth-200 bg-white font-sans text-earth-900 focus:outline-none focus:border-earth-400"
+                placeholder="Teie nimi"
+              />
+              
+              <input
+                type="email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                className="w-full px-4 py-3 border border-earth-200 bg-white font-sans text-earth-900 focus:outline-none focus:border-earth-400"
+                placeholder="E-mail"
+              />
+
+              <div className="flex items-center justify-between py-2">
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-earth-600 font-sans">Kogus:</span>
+                  <button type="button" onClick={() => updateQuantity(formData.quantity - 1)} className="w-9 h-9 border border-earth-200 text-earth-600 hover:bg-earth-100 font-sans text-lg">−</button>
+                  <span className="font-sans text-earth-900 w-6 text-center">{formData.quantity}</span>
+                  <button type="button" onClick={() => updateQuantity(formData.quantity + 1)} className="w-9 h-9 border border-earth-200 text-earth-600 hover:bg-earth-100 font-sans text-lg">+</button>
+                </div>
+                <span className="font-sans text-earth-900 font-medium text-lg">€{(selectedProduct.price * formData.quantity).toFixed(2)}</span>
+              </div>
+
+              <textarea
+                value={formData.customNote}
+                onChange={(e) => setFormData(prev => ({ ...prev, customNote: e.target.value }))}
+                className="w-full px-4 py-3 border border-earth-200 bg-white font-sans text-earth-900 focus:outline-none focus:border-earth-400 resize-none"
+                placeholder="Lisamärkused (valikuline)"
+                rows={2}
+              />
+
+              <button
+                type="submit"
+                disabled={isSubmitting || isSuccess}
+                className={`w-full py-4 font-sans uppercase tracking-widest text-sm flex items-center justify-center gap-2 ${isSuccess ? 'bg-green-600 text-white' : 'bg-earth-900 text-white hover:bg-earth-800'} ${isSubmitting ? 'opacity-70' : ''}`}
+              >
+                {isSubmitting ? 'Saadan...' : isSuccess ? (<>Saadetud! <Check size={18} /></>) : (<>Saada tellimus <span className="text-lg">❤️</span></>)}
+              </button>
+            </form>
           </div>
-          {/* Close on backdrop click */}
-          <div className="absolute inset-0 -z-10" onClick={closeModal} />
         </div>
       )}
     </section>
